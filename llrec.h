@@ -84,6 +84,24 @@ Node* llfilter(Node* head, Comp pred)
     // Provide your implementation below
     //*********************************************
 
+    // base
+    if (head == NULL) {
+      return NULL;
+    }
+
+    // filter list before deciding current node
+    Node* rest = llfilter(head->next, pred);
+
+    // curr node
+    if (pred(head->val)) {
+      delete head; // remove  
+      return rest;  // filtered rest becomes sublist
+    }
+    else {
+      head->next = rest; // keep it
+      return head; 
+    }
+
 
 }
 
